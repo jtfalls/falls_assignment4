@@ -12,13 +12,17 @@ import java.util.Scanner;
 
 public class DuplicateCounter {
 	
+	//make a variable to store number of times word is used
 	
 private Integer wordCounter;
+
+
 private Map<String, Integer> map;
 
 public DuplicateCounter() {
-	
+	//initialize it to zero at first
 	this.wordCounter = 0;
+	
 	this.map = new HashMap<>();
 	
 }
@@ -28,7 +32,7 @@ public DuplicateCounter() {
 		Scanner fileReader;
 		try {
 			
-			
+			//scan words on file just like last problem
 			fileReader = new Scanner (new File(dataFile));
 				while (fileReader.hasNextLine()) {
 					
@@ -44,9 +48,11 @@ public DuplicateCounter() {
 							map.put(word,  this.wordCounter);
 						}
 				}
+				
+				//close! Very important.
 			fileReader.close();
 			
-		} catch (FileNotFoundException fnfe) {
+		} catch (FileNotFoundException e) {
 			
 			System.out.println("File" + dataFile + "cannot be found!");
 			System.exit(1);
@@ -62,31 +68,33 @@ public DuplicateCounter() {
 	
 	public void write(String outputFile) {
 		
-		FileWriter fw;
-		PrintWriter pw;
-		
+
+		PrintWriter printwriter;
+		FileWriter filewriter;
 		
 			try {
 				
-				fw= new FileWriter(new File(outputFile));
-				pw= new PrintWriter(fw);
+				filewriter= new FileWriter(new File(outputFile));
+				printwriter = new PrintWriter(filewriter);
 				
 					for (Map.Entry<String, Integer> entry: map.entrySet()) {
 						
-						
-						pw.write(entry.getKey() + " occurs " + entry.getValue() + " times " + System.lineSeparator());
+						//print how many times each word was used
+						printwriter.write(entry.getKey() + " occurs " + entry.getValue() + " times " + System.lineSeparator());
 						
 					}
 					
 				System.out.println("Map data written to file: " + outputFile);
-				pw.flush();
-				fw.close();
-				pw.close();
+				printwriter.flush();
+				
+				//close what we opened. very important
+				filewriter.close();
+				printwriter.close();
 					
 				
 				
 			} catch (IOException ex ) {
-				
+				//have error code ready if something bad happens.
 				System.out.println("Error writing to " + outputFile + ": " + ex.getMessage());
 				System.exit(1);
 			}

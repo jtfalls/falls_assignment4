@@ -11,7 +11,13 @@ public class Application {
 		
 		DuplicateRemover a = new DuplicateRemover();
 		
+		
+		//remove words from text and put them into a variable
 		a.remove("problem1.txt");
+		
+		
+		//write the remaining words
+		
 		a.write("unique_Words.txt");
 	}
 

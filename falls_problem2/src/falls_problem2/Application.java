@@ -10,8 +10,10 @@ public class Application {
 	public static void main(String[] args) {
 		
 		DuplicateCounter duplicateCounter = new DuplicateCounter();
-		
+		//count what is in file
 		duplicateCounter.count(INPUT_FILE);
+		
+		//print results to user
 		duplicateCounter.write(OUTPUT_FILE);
 		
 		
